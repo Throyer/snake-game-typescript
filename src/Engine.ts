@@ -16,7 +16,7 @@ export default class Engine {
       this.canvas = canvas;
     } else {
       const element = document.createElement("canvas");
-      document.body.appendChild(element)
+      document.body.appendChild(element);
       this.canvas = element;
     }
 
@@ -26,14 +26,20 @@ export default class Engine {
   }
 
   public start(): void {
-    this.loop();    
+    this.loop();
   }
 
   private loop(): void {
     if (this.update) {
-      this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      this.clearContext(this.context);
       this.update(this.context);
     }
     requestAnimationFrame(this.loop.bind(this));
+  }
+
+  private clearContext(context: CanvasRenderingContext2D): void {
+    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.context.fillStyle = "#000";
+    this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
   }
 }
