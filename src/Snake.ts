@@ -5,6 +5,9 @@ export default class Snake extends GameObject {
   private dir: (snake: Snake) => void = (snake) =>
     (snake.position.x += snake.tileSize);
 
+  private next: Snake;
+  private previous: Snake;
+
   update(context?: CanvasRenderingContext2D): void {
     context.fillStyle = this.color;
     context.fillRect(
@@ -47,8 +50,18 @@ export default class Snake extends GameObject {
     }
   }
 
-  increase(): void {
-    console.log("novo corpinho");
-    
+  increase() {
+    const snake = this.findLast(this);
+    const { x, y } = this.position;
+    snake.next = new Snake({ color: this.color, position: { x, y } })
+  }
+
+  findLast(snake: Snake) {
+    if (snake.next) {
+      snake.next.previous = snake;
+      return this.findLast(snake.next);
+    } else {
+      return snake;
+    }
   }
 }

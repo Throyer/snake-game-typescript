@@ -9,18 +9,18 @@ const SNAKE_SPEED = 5;
 const engine = new Engine({ width: terrain.width, height: terrain.height });
 
 const snake: Snake = new Snake({ color: "#eb4034" });
-let food = new Food({ color: "yellow" });
+let food = new Food({ color: "#ebeb34" });
 let count = 0;
 
 // update
-engine.update = (context) => {
+engine.update = context => {
   snake.update(context);
   if (++count === SNAKE_SPEED) {
     count = 0;
     snake.move(context);
     if (snake.isIntersect(food)) {
       snake.increase();  
-      food.changePosition(context); 
+      food.changePosition(context);
     }
   }
   food.update(context);
