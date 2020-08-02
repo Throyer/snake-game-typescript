@@ -56,7 +56,7 @@ export default class Snake extends GameObject {
     snake.next = new Snake({ color: this.color, position: { x, y } })
   }
 
-  findLast(snake: Snake) {
+  private findLast(snake: Snake) {
     if (snake.next) {
       snake.next.previous = snake;
       return this.findLast(snake.next);
