@@ -1,5 +1,5 @@
 {
-  "name": "the-last-pixel",
+  "name": "snake",
   "version": "1.0.0",
   "main": "src/app.ts",
   "license": "MIT",
