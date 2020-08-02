@@ -30,20 +30,25 @@ export default class Snake extends GameObject {
   }
 
   direction(key: string) {
-    if (key === "a") {
+    if (key === "a" || key.replace("Arrow", "") === "Left") {
       this.dir = (snake) => (snake.position.x -= snake.tileSize);
     }
 
-    if (key === "s") {
+    if (key === "s" || key.replace("Arrow", "") === "Down") {
       this.dir = (snake) => (snake.position.y += snake.tileSize);
     }
 
-    if (key === "d") {
+    if (key === "d" || key.replace("Arrow", "") === "Right") {
       this.dir = (snake) => (snake.position.x += snake.tileSize);
     }
 
-    if (key === "w") {
+    if (key === "w" || key.replace("Arrow", "") === "Up") {
       this.dir = (snake) => (snake.position.y -= snake.tileSize);
     }
+  }
+
+  increase(): void {
+    console.log("novo corpinho");
+    
   }
 }
